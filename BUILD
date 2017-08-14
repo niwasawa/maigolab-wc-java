@@ -8,7 +8,7 @@ java_library(
 )
 
 java_test(
-  name = "AllTests",
+  name = "all",
   size = "small",
   deps = [
     ":maigolab-wc",
