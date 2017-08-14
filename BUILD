@@ -27,3 +27,14 @@ java_test(
   test_class = "info.maigo.lab.wc.GetRequestTest",
 )
 
+java_test(
+  name = "AllTests",
+  size = "small",
+  deps = [
+    ":maigolab-wc",
+    "@junit//jar",
+  ],
+  srcs = glob(["src/test/java/**/*.java"]),
+  test_class = "AllTests",
+)
+
