@@ -74,7 +74,7 @@ public class AppTest {
         System.out.println("StatusMessage: " + res.getStatusMessage());
         System.out.println("Headers: " + res.getHeaders());
         System.out.println("ContentType: " + res.getContentType());
-        System.out.println("Body: " + res.getBody());
+        //System.out.println("Body: " + res.getBody());
         System.out.println("Body: " + res.getBodyString());
     }
 }

@@ -7,3 +7,14 @@ java_library(
   ],
 )
 
+java_test(
+  name = "all",
+  size = "small",
+  deps = [
+    ":maigolab-wc",
+    "@junit//jar",
+  ],
+  srcs = glob(["src/test/java/**/*.java"]),
+  test_class = "AllTests",
+)
+
