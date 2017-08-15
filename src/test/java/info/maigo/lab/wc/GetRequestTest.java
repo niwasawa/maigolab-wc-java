@@ -6,11 +6,19 @@ import org.junit.Test;
 public class GetRequestTest {
 
     @Test
-    public void test() throws Exception {
+    public void testParameters() throws Exception {
         GetRequest req = new GetRequest("http://localhost/");
-        req.set("foo", "123");
-        req.set("bar", "456");
-        assertEquals("http://localhost/?bar=456&foo=123", req.getURL());
+        req.add("foo", "123");
+        req.add("bar", "456");
+        assertEquals("http://localhost/?foo=123&bar=456", req.getURL());
+    }
+
+    @Test
+    public void testSameNameParameters() throws Exception {
+        GetRequest req = new GetRequest("http://localhost/");
+        req.add("foo", "123");
+        req.add("foo", "456");
+        assertEquals("http://localhost/?foo=123&foo=456", req.getURL());
     }
 }
 

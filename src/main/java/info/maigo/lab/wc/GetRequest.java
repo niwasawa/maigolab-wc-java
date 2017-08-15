@@ -5,22 +5,14 @@ import java.util.*;
 
 public class GetRequest extends Request {
 
-    private final Properties params = new Properties();
+    private final List<Parameter> params = new ArrayList<Parameter>();
 
     public GetRequest(String baseurl) {
         super(baseurl);
     }
 
-    public void set(Properties params) {
-        this.params.putAll(params);
-    }
-
-    public void set(String key, String value) {
-        params.setProperty(key, value);
-    }
-
-    public String remove(String key) {
-        return (String) params.remove(key);
+    public void add(String key, String value) {
+        params.add(new Parameter(key, value));
     }
 
     public String getURL() throws Exception {
@@ -43,14 +35,13 @@ public class GetRequest extends Request {
 
     private String getParametersString(char keyValueSeparator, char parameterSeparator) throws Exception {
         StringBuffer buf = new StringBuffer();
-        for (String key : params.stringPropertyNames()) {
-            String val = params.getProperty(key);
-            buf.append(key);
+        for (Parameter p: params) {
+            buf.append(p.name);
             buf.append(keyValueSeparator);
             if (encoding != null) {
-                buf.append(URLEncoder.encode(val, encoding));
+                buf.append(URLEncoder.encode(p.value, encoding));
             } else {
-                buf.append(val);
+                buf.append(p.value);
             }
             buf.append(parameterSeparator);
         }
@@ -59,4 +50,14 @@ public class GetRequest extends Request {
         }
         return buf.toString();
     }
+
+    private static class Parameter {
+        String name;
+        String value;
+        Parameter(String name, String value) {
+            this.name = name;
+            this.value = value;
+        }
+    }
 }
+
