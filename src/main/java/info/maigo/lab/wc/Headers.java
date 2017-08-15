@@ -33,5 +33,13 @@ class Headers {
     String get(String name) {
         return headers.getProperty(name);
     }
+
+    String[] gets(String name) {
+        List<String> vals = headerFields.get(name);
+        if (vals == null) {
+            return null;
+        }
+        return vals.toArray(new String[vals.size()]);
+    }
 }
 

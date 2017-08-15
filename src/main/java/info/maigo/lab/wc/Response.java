@@ -6,10 +6,10 @@ public class Response {
 
     private final int statusCode;
     private final String statusMessage;
-    private final Properties headers;
+    private final Headers headers;
     private final Body body;
 
-    Response(int statusCode, String statusMessage, Properties headers, Body body) {
+    Response(int statusCode, String statusMessage, Headers headers, Body body) {
         this.statusCode = statusCode;
         this.statusMessage = statusMessage;
         this.headers = headers;
@@ -24,8 +24,16 @@ public class Response {
         return statusMessage;
     }
 
+    public String getHeader(String name) {
+        return headers.get(name);
+    }
+
+    public String[] getHeaders(String name) {
+        return headers.gets(name);
+    }
+
     public Properties getHeaders() {
-        return headers;
+        return headers.getHeaders();
     }
 
     public ContentType getContentType() {
@@ -44,9 +52,7 @@ public class Response {
         final String LF = "\r\n";
         StringBuilder sb = new StringBuilder();
         sb.append(statusCode + " " + statusMessage + LF);
-        for (String key : headers.stringPropertyNames()) {
-            sb.append(key + ": " + headers.getProperty(key) + LF);
-        }
+        sb.append(headers);
         sb.append(LF);
         sb.append(body);
         return sb.toString();

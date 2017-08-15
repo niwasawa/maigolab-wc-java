@@ -49,7 +49,7 @@ public class Client {
             int statusCode = con.getResponseCode();
             String statusMessage = con.getResponseMessage();
 
-            Properties resHeaders = getResponseHeaders(con);
+            Headers resHeaders = new Headers(con);
 
             InputStream is = con.getInputStream();
             Body body = new Body(con, is);
@@ -60,18 +60,6 @@ public class Client {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }
-
-    private static Properties getResponseHeaders(HttpURLConnection con) {
-        Map<String, List<String>> headers = con.getHeaderFields();
-        Properties p = new Properties();
-        for (String key : headers.keySet()) {
-            if (key != null) {
-                List<String> vals = headers.get(key);
-                p.setProperty(key, vals.get(0));
-            }
-        }
-        return p;
     }
 
     public String toString() {
