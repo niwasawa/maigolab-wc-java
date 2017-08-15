@@ -19,3 +19,9 @@ bazel test all
 bazel clean
 ```
 
+## Make document
+
+```
+javadoc info.maigo.lab.wc -sourcepath src/main/java -d doc
+```
+
