@@ -36,11 +36,13 @@ public class GetRequest extends Request {
     private String getParametersString(char keyValueSeparator, char parameterSeparator) throws Exception {
         StringBuffer buf = new StringBuffer();
         for (Parameter p: params) {
-            buf.append(p.name);
-            buf.append(keyValueSeparator);
             if (encoding != null) {
+                buf.append(URLEncoder.encode(p.name, encoding));
+                buf.append(keyValueSeparator);
                 buf.append(URLEncoder.encode(p.value, encoding));
             } else {
+                buf.append(p.name);
+                buf.append(keyValueSeparator);
                 buf.append(p.value);
             }
             buf.append(parameterSeparator);
