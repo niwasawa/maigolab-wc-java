@@ -15,7 +15,7 @@ public class AppTest {
         
         // request
         GetRequest req = new GetRequest("https://map.yahooapis.jp/search/local/V1/localSearch");
-        req.setHeader("User-Agent", "Yahoo AppID: " + appid);
+        req.addHeader("User-Agent", "Yahoo AppID: " + appid);
         req.add("query", "ラーメン");
         req.add("output", "json");
         req.add("results", "1");
@@ -37,7 +37,7 @@ public class AppTest {
         
         // request
         GetRequest req = new GetRequest("https://map.yahooapis.jp/search/local/V1/localSearch");
-        req.setHeader("User-Agent", "Yahoo AppID: " + appid);
+        req.addHeader("User-Agent", "Yahoo AppID: " + appid);
         req.add("query", "ラーメン");
         req.add("output", "xml");
         req.add("results", "1");
@@ -59,7 +59,7 @@ public class AppTest {
         
         // request
         GetRequest req = new GetRequest("https://map.yahooapis.jp/map/V1/static");
-        req.setHeader("User-Agent", "Yahoo AppID: " + appid);
+        req.addHeader("User-Agent", "Yahoo AppID: " + appid);
         req.add("lat", "35.185556");
         req.add("lon", "136.899061");
         req.add("z", "18");

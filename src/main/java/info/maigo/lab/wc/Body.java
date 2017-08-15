@@ -13,6 +13,12 @@ class Body {
     private final String charset;
     private final byte[] body;
 
+    Body(ContentType contentType, String charset, byte[] body) {
+        this.contentType = contentType;
+        this.charset = charset;
+        this.body = body;
+    }
+    
     Body(HttpURLConnection con, InputStream in) throws IOException {
         contentType = getContentType(con);
         charset = getCharset(contentType);
