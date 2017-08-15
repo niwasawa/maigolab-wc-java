@@ -26,7 +26,7 @@ public class Client {
 
         try {
             URL url = new URL(req.getURL());
-            Properties headers = req.getHeaders();
+            List<KeyValue> headers = req.getHeaders();
             
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             
@@ -39,9 +39,9 @@ public class Client {
 
             con.setRequestMethod("GET");
 
-            // headers
-            for (String key : headers.stringPropertyNames()) {
-                con.setRequestProperty(key, headers.getProperty(key));
+            // http request headers
+            for (KeyValue kv : headers) {
+                con.addRequestProperty(kv.key, kv.value);
             }
 
             con.connect();
