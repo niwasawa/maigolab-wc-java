@@ -20,5 +20,13 @@ public class GetRequestTest {
         req.add("foo", "456");
         assertEquals("http://localhost/?foo=123&foo=456", req.getURL());
     }
+
+    @Test
+    public void testEncodingParameters() throws Exception {
+        GetRequest req = new GetRequest("http://localhost/");
+        req.add("foo", "123");
+        req.add("迷", "迷子");
+        assertEquals("http://localhost/?foo=123&%E8%BF%B7=%E8%BF%B7%E5%AD%90", req.getURL());
+    }
 }
 
